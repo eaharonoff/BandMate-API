@@ -129,7 +129,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers
+  active_model_serializers (~> 0.10.0)
   byebug
   listen (~> 3.0.5)
   pg (~> 0.18)
@@ -141,4 +141,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

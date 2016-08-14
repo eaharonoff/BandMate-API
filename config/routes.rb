@@ -17,6 +17,7 @@ Rails.application.routes.draw do
         resources :genres
         resources :instruments
         resources :users
+        get '/users/:id/conversations', to: 'users#show_conversations'
       end
   end
 end

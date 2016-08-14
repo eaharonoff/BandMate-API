@@ -1,3 +1,4 @@
+
 ActiveModelSerializers.config.adapter = :json_api
 
 api_mime_types = %W(
@@ -6,3 +7,6 @@ api_mime_types = %W(
  application/json
 )
 Mime::Type.register 'application/vnd.api+json', :json, api_mime_types
+
+ActiveModelSerializers.config.default_includes = '**'
+
