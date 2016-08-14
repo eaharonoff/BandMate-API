@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   resources :user_conversations
   resources :member_networks
   resources :networks
@@ -17,5 +17,7 @@ Rails.application.routes.draw do
       resources :instruments
       resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+
+  get '/users/:id/conversations', to: 'users#show_conversations'
+
 end
