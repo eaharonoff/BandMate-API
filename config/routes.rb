@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :user_conversations
   resources :member_networks
   resources :networks
       resources :band_genres

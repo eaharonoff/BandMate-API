@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_one :network
   has_many :member_networks, foreign_key: 'member_id'
   has_many :networks, through: :member_networks
-  has_many :conversations, foreign_key: 'user_1_id'
-  has_many :conversations, foreign_key: 'user_2_id'
+  has_many :user_conversations
+  has_many :conversations, through: :user_conversations
   has_many :messages
   has_many :user_bands
   has_many :bands, through: :user_bands
