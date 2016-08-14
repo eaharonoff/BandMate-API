@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  namespace :api do
-      namespace :v1 do
+
         resources :user_conversations
         resources :member_networks
         resources :networks
@@ -19,7 +18,6 @@ Rails.application.routes.draw do
         resources :users
         get '/users/:id/conversations', to: 'users#show_conversations'
       end
-  end
-end
+
 
 
