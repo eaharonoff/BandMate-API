@@ -6,8 +6,9 @@ class User < ApplicationRecord
   has_many :instruments, through: :user_instruments
   has_many :friend_requests, foreign_key: 'sender_id'
   has_many :friend_requests, foreign_key: 'recipient_id'
-  has_many :friendships, foreign_key: 'friend_1_id'
-  has_many :friendships, foreign_key: 'friend_2_id'
+  has_one :network
+  has_many :member_networks, foreign_key: 'member_id'
+  has_many :networks, through: :member_networks
   has_many :conversations, foreign_key: 'user_1_id'
   has_many :conversations, foreign_key: 'user_2_id'
   has_many :messages
@@ -22,10 +23,10 @@ class User < ApplicationRecord
     Friendship.where('user_1_id = ?', self.id).or(Friendship.where('user_2_id = ?', self.id))
   end
 
-  def friends
-    friend_ids = all_friendships.pluck(:user_1_id, :user_2_id).flatten.reject {|id| id == self.id}
-    friend_ids.map {|id| User.find(id)}
-    # refactor this to maintain collection proxy as opposed to ruby array
-  end
+  # def friends
+  #   friend_ids = all_friendships.pluck(:user_1_id, :user_2_id).flatten.reject {|id| id == self.id}
+  #   friend_ids.map {|id| User.find(id)}
+  #   # refactor this to maintain collection proxy as opposed to ruby array
+  # end
 
 end
