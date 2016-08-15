@@ -17,7 +17,5 @@ Rails.application.routes.draw do
         resources :instruments
         resources :users
         get '/users/:id/conversations', to: 'users#show_conversations'
+        post '/users/login', to: 'users#login'
       end
-
-
-
