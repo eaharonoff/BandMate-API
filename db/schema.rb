@@ -90,13 +90,6 @@ ActiveRecord::Schema.define(version: 20160815174703) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_conversations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "conversation_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
   create_table "user_genres", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "genre_id"
