@@ -15,7 +15,6 @@ require "rails/test_unit/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
 module FinalProject
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -25,8 +24,7 @@ module FinalProject
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
     config.action_dispatch.default_headers.merge!({ 'Access-Control-Allow-Origin' => '', 'Access-Control-Request-Method' => '' })
-
+    config.api_only = true
   end
 end
