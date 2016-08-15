@@ -114,11 +114,11 @@ ActiveRecord::Schema.define(version: 20160814004629) do
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
+    t.integer  "zip"
     t.string   "name"
     t.string   "age"
     t.string   "bio"
     t.string   "soundcloud_url"
-    t.integer  "city_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

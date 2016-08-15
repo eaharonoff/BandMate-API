@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  belongs_to :city
+  has_secure_password
+  # belongs_to :city
   has_many :user_genres
   has_many :genres, through: :user_genres
   has_many :user_instruments

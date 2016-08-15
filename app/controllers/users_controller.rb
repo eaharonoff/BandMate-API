@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
-  def new 
-    @user = User.new 
+  def new
+    @user = User.new
   end
 
   def create
-    binding.pry
-  
+    real_params = JSON.parse(params.keys[0])
+    User.create(email: real_params['email'], password: real_params['password'], zip: real_params['zip'])
+    instruments = real_params["instruments"]
+    genres = real_params["genres"]
+    instruments.split.each {|instrument| UserInstrument.create(user: User.last, instrument: Instrument.find_by(name: instrument))}
+    genres.split.each {|genre| UserGenre.create(user: User.last, genre: Genre.find_by(name: genre))}
   end
 
   def index
@@ -19,5 +23,3 @@ class UsersController < ApplicationController
     render json: conversations.includes(:users), include: ['name', 'users']
   end
 end
-
-
