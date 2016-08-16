@@ -10,6 +10,10 @@ User.destroy_all
 
 genre1 = Genre.create(name: 'rock')
 genre2 = Genre.create(name: 'pop')
+genre3 = Genre.create(name: 'punk')
+genre4 = Genre.create(name: 'polka')
+
+
 instr1 = Instrument.create(name: 'guitar')
 instr2 = Instrument.create(name: 'drums')
 
@@ -28,6 +32,11 @@ friendship2 = Friendship.create(user_id: raoul.id, friend_id: beans.id)
 friendship3 = Friendship.create(user_id: beans.id, friend_id: daniel.id)
 
 
+
+
+
+
+
 # request_1 = FriendRequest.create(sender: beans, recipient: eman)
 # request_2 = FriendRequest.create(sender: beans, recipient: raoul)
 # request_3 = FriendRequest.create(sender: beans, recipient: daniel)
@@ -39,6 +48,7 @@ friendship3 = Friendship.create(user_id: beans.id, friend_id: daniel.id)
 # Message.create(conversation: classy_ladykillers, user: eman, body: 'sup girl')
 # Message.create(conversation: classy_ladykillers, user: beans, body: 'how are you')
 # Message.create(conversation: classy_ladykillers, user: eman, body: 'wanna date?')
+
 
 
 
