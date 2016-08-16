@@ -5,24 +5,31 @@ class UsersController < ApplicationController
 
   def create
     real_params = JSON.parse(params.keys[0])
-    current_user = User.create(email: real_params['email'], password: real_params['password'], zip: real_params['zip'])
-    instruments = real_params["instruments"]
-    genres = real_params["genres"]
-    instruments.split.each {|instrument| UserInstrument.create(user: User.last, instrument: Instrument.find_by(name: instrument))}
-    genres.split.each {|genre| UserGenre.create(user: User.last, genre: Genre.find_by(name: genre))}
-    render json: current_user, include: ["instruments", "genres"]
+    user = User.create(name: real_params['name'], zip: real_params['zip'], email: real_params['email'], password: real_params['password'])
+    add_instruments_and_genres(real_params, user)
+    render json: user, include: ["name", "zip", "genres", "instruments"]
   end
 
-  def index
-    users = User.all
-    render json: users, include: ['name', 'instruments', 'genres']
+  def edit
+    real_params = JSON.parse(params.keys[0])
+    user = User.find(real_params['id'])
+    user.update(name: real_params['name'], zip: real_params['zipcode'], age: real_params['age'], bio: real_params['bio'])
+    UserGenre.where('user_id = ?', user.id).destroy_all
+    UserInstrument.where('user_id = ?', user.id).destroy_all
+    add_instruments_and_genres(real_params, user)
+    render json: user, include: ["name", "zip", "age", "bio", "genres", "instruments"]
   end
 
-  def show_conversations
-    user = User.find(params[:id])
-    conversations = user.conversations
-    render json: conversations.includes(:users), include: ['name', 'users']
-  end
+  # def index
+  #   users = User.all
+  #   render json: users, include: ['name', 'instruments', 'genres']
+  # end
+  #
+  # # def show_conversations
+  # #   user = User.find(params[:id])
+  # #   conversations = user.conversations
+  # #   render json: conversations.includes(:users), include: ['name', 'users']
+  # # end
 
   def login
     real_params = JSON.parse(params.keys[0])
@@ -33,6 +40,13 @@ class UsersController < ApplicationController
       message = {info: 'Incorrect Email / Password'}
       render json: message
     end
+  end
+
+  def add_instruments_and_genres(real_params, user)
+    genres = real_params["genres"]
+    instruments = real_params["instruments"]
+    instruments.split.each {|instrument| UserInstrument.create(user: user, instrument: Instrument.find_by(name: instrument))}
+    genres.split.each {|genre| UserGenre.create(user: user, genre: Genre.find_by(name: genre))}
   end
 
 end

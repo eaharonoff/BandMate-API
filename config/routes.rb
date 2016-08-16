@@ -18,4 +18,5 @@ Rails.application.routes.draw do
         resources :users
         get '/users/:id/conversations', to: 'users#show_conversations'
         post '/users/login', to: 'users#login'
+        post '/user', to: 'users#edit'
       end
