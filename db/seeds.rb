@@ -8,20 +8,26 @@
 
 User.destroy_all
 
+genre1 = Genre.create(name: 'rock')
+genre2 = Genre.create(name: 'pop')
+instr1 = Instrument.create(name: 'guitar')
+instr2 = Instrument.create(name: 'drums')
 
 beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password')
 eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password')
 raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password')
 daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password')
 
+UserGenre.create(user: beans, genre_id: genre1.id)
+UserGenre.create(user: eman, genre_id: genre1.id)
+UserInstrument.create(user: beans, instrument_id: instr1.id)
+UserInstrument.create(user: eman, instrument_id: instr2.id)
+
 friendship1 = Friendship.create(user_id: beans.id, friend_id: eman.id)
 friendship2 = Friendship.create(user_id: raoul.id, friend_id: beans.id)
 friendship3 = Friendship.create(user_id: beans.id, friend_id: daniel.id)
 
-Genre.create(name: 'rock')
-Genre.create(name: 'pop')
-Instrument.create(name: 'guitar')
-Instrument.create(name: 'drums')
+
 # request_1 = FriendRequest.create(sender: beans, recipient: eman)
 # request_2 = FriendRequest.create(sender: beans, recipient: raoul)
 # request_3 = FriendRequest.create(sender: beans, recipient: daniel)

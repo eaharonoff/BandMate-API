@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     render json: user, include: ["name", "zip", "genres", "instruments"]
   end
 
+  def show
+    user = User.find(params[:id])
+    render json: user, include: ['instruments', 'genres', 'all_friends']
+  end
+
   def edit
     real_params = JSON.parse(params.keys[0])
     user = User.find(real_params['id'])
@@ -19,6 +24,8 @@ class UsersController < ApplicationController
     add_instruments_and_genres(real_params, user)
     render json: user, include: ["name", "zip", "age", "bio", "genres", "instruments"]
   end
+
+
 
   # def index
   #   users = User.all
