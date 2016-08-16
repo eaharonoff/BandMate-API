@@ -16,7 +16,9 @@ Rails.application.routes.draw do
         resources :genres
         resources :instruments
         resources :users
+
         get '/users/:id/conversations', to: 'users#show_conversations'
         post '/users/login', to: 'users#login'
-        post '/user', to: 'users#edit'
+        post '/user', to: 'users#update'
+        post '/users/filter', to: 'users#filter'
       end

@@ -20,6 +20,9 @@ friendship3 = Friendship.create(user_id: 1, friend_id: 4)
 
 Genre.create(name: 'rock')
 Genre.create(name: 'pop')
+Genre.create(name: 'punk')
+Genre.create(name: 'polka')
+
 Instrument.create(name: 'guitar')
 Instrument.create(name: 'drums')
 # request_1 = FriendRequest.create(sender: beans, recipient: eman)
@@ -33,6 +36,7 @@ Instrument.create(name: 'drums')
 # Message.create(conversation: classy_ladykillers, user: eman, body: 'sup girl')
 # Message.create(conversation: classy_ladykillers, user: beans, body: 'how are you')
 # Message.create(conversation: classy_ladykillers, user: eman, body: 'wanna date?')
+
 
 
 
