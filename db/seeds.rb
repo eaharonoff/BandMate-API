@@ -6,14 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# # somerset = City.create(name: 'somerset')
-# beans = User.create(name: 'beans')
-# # great_neck = City.create(name: 'great neck')
-# eman = User.create(name: 'eman')
-# # bellmore = City.create(name: 'bellmore')
-# raoul = User.create(name: 'raoul')
-# # los_angeles = City.create(name: 'los angeles')
-# daniel = User.create(name: 'daniel')
+User.destroy_all
+
+
+beans = User.create(name: 'beans', password: 'password')
+eman = User.create(name: 'eman', password: 'password')
+raoul = User.create(name: 'raoul', password: 'password')
+daniel = User.create(name: 'daniel', password: 'password')
+
+friendship1 = Friendship.create(user_id: 1, friend_id: 2)
+friendship2 = Friendship.create(user_id: 3, friend_id: 1)
+friendship3 = Friendship.create(user_id: 1, friend_id: 4)
+
 Genre.create(name: 'rock')
 Genre.create(name: 'pop')
 Instrument.create(name: 'guitar')
@@ -29,11 +33,12 @@ Instrument.create(name: 'drums')
 # Message.create(conversation: classy_ladykillers, user: eman, body: 'sup girl')
 # Message.create(conversation: classy_ladykillers, user: beans, body: 'how are you')
 # Message.create(conversation: classy_ladykillers, user: eman, body: 'wanna date?')
-# network_1 = Network.create(user: beans)
-# network_2 = Network.create(user: eman)
-# MemberNetwork.create(member: eman, network: network_1)
-# MemberNetwork.create(member: daniel, network: network_1)
-# MemberNetwork.create(member: beans, network: network_2)
-# MemberNetwork.create(member: daniel, network: network_2)
+
+
+
+
+# request_1 = FriendRequest.create(sender: beans, recipient: eman)
+# request_2 = FriendRequest.create(sender: beans, recipient: raoul)
+# request_3 = FriendRequest.create(sender: beans, recipient: daniel)
 
 # User.joins("INNER JOIN friendships ON user_1_id = 1").where.not(id: 1).distinct

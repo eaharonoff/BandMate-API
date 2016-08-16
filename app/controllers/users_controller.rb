@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def index
     users = User.all
-    render json: users, include: ['instruments', 'genres']
+    render json: users, include: ['name', 'instruments', 'genres']
   end
 
   def show_conversations
