@@ -34,8 +34,9 @@ class UsersController < ApplicationController
   def login
     real_params = JSON.parse(params.keys[0])
     user = User.find_by(email: real_params['email'])
+    friends = user.all_friends[0..3]
     if user && user.authenticate(real_params["password"])
-      render json: user, include: ['instruments', 'genres']
+      render json: user, include: ['instruments', 'genres', 'all_friends']
     else
       message = {info: 'Incorrect Email / Password'}
       render json: message

@@ -9,14 +9,14 @@
 User.destroy_all
 
 
-beans = User.create(name: 'beans', password: 'password')
-eman = User.create(name: 'eman', password: 'password')
-raoul = User.create(name: 'raoul', password: 'password')
-daniel = User.create(name: 'daniel', password: 'password')
+beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password')
+eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password')
+raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password')
+daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password')
 
-friendship1 = Friendship.create(user_id: 1, friend_id: 2)
-friendship2 = Friendship.create(user_id: 3, friend_id: 1)
-friendship3 = Friendship.create(user_id: 1, friend_id: 4)
+friendship1 = Friendship.create(user_id: beans.id, friend_id: eman.id)
+friendship2 = Friendship.create(user_id: raoul.id, friend_id: beans.id)
+friendship3 = Friendship.create(user_id: beans.id, friend_id: daniel.id)
 
 Genre.create(name: 'rock')
 Genre.create(name: 'pop')
