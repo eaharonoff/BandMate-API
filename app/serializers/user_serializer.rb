@@ -6,4 +6,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :received_requests
   has_many :friends
   has_many :inverse_friends
+  has_many :conversations
 end
