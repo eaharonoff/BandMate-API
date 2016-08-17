@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
+
     real_params = JSON.parse(params.keys[0])
     user = User.create(name: real_params['name'], zip: real_params['zip'], email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'])
     add_instruments_and_genres(real_params, user)
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    byebug
     user = User.find(params[:id])
     render json: user, include: ["genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
   end
