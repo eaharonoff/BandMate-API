@@ -4,8 +4,9 @@ class FriendshipsController < ApplicationController
     real_params = JSON.parse(params.keys[0])
     sender = User.find(real_params['senderId'])
     recipient = User.find(real_params['userId'])
-    Friendship.create(user: sender, friend: recipient)
-    FriendRequest.where('sender_id = ? AND recipient_id = ?', sender.id, recipient.id).destroy_all
-    render json: recipient, include: ["name", "zip", "age", "bio", "genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
+    friendship = Friendship.create(user: sender, friend: recipient)
+    friend_request = FriendRequest.find_by(sender: sender, recipient: recipient)
+    friend_request.destroy
+    render json: friend_request, include: ['sender', 'sender.genres', 'sender.instruments']
   end
 end
