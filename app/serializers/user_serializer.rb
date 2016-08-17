@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :zip, :age, :bio
+  attributes :id, :name, :email, :zip, :age, :bio, :soundcloud
   has_many :instruments
   has_many :genres
   has_many :sent_requests

@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20160815174703) do
     t.string   "name"
     t.string   "age"
     t.string   "bio"
-    t.string   "soundcloud_url"
+    t.string   "soundcloud"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

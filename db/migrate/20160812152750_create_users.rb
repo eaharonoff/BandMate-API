@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :age
       t.string :bio
-      t.string :soundcloud_url
+      t.string :soundcloud
 
       t.timestamps
     end
