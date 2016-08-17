@@ -5,8 +5,8 @@ class User < ApplicationRecord
   has_many :genres, through: :user_genres
   has_many :user_instruments
   has_many :instruments, through: :user_instruments
-  has_many :friend_requests, foreign_key: 'sender_id'
-  has_many :friend_requests, foreign_key: 'recipient_id'
+  has_many :sent_requests, :class_name => 'FriendRequest', foreign_key: 'sender_id'
+  has_many :received_requests, :class_name=> 'FriendRequest', foreign_key: 'recipient_id'
   has_many :user_conversations
   has_many :conversations, through: :user_conversations
   has_many :messages
@@ -19,6 +19,10 @@ class User < ApplicationRecord
 
   def all_friends
     self.friends + self.inverse_friends
+  end
+
+  def accept_request(from_user_id)
+    Friendship.create(user_id: self.id, friend_id: from_user_id)
   end
 
 end
