@@ -7,12 +7,12 @@ class UsersController < ApplicationController
     real_params = JSON.parse(params.keys[0])
     user = User.create(name: real_params['name'], zip: real_params['zip'], email: real_params['email'], password: real_params['password'])
     add_instruments_and_genres(real_params, user)
-    render json: user, include: ["name", "zip", "genres", "instruments"]
+    render json: user, include: ["genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
   end
 
   def show
     user = User.find(params[:id])
-    render json: user, include: ["name", "zip", "age", "bio", "genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
+    render json: user, include: ["genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
   end
 
 
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     UserGenre.where('user_id = ?', user.id).destroy_all
     UserInstrument.where('user_id = ?', user.id).destroy_all
     add_instruments_and_genres(real_params, user)
-    render json: user, include: ["name", "zip", "age", "bio", "genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
+    render json: user, include: ["genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
   end
 
 
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     user = User.find_by(email: real_params['email'])
     friends = user.all_friends[0..3]
     if user && user.authenticate(real_params["password"])
-      render json: user, include: ["name", "zip", "age", "bio", "genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
+      render json: user, include: ["genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
     else
       message = {info: 'Incorrect Email / Password'}
       render json: message
