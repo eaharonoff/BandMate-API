@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     render json: user, include: ["genres", "instruments", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
   end
 
-
   def update
     real_params = JSON.parse(params.keys[0])
     user = User.find(real_params['id'])
