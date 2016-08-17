@@ -21,15 +21,21 @@ beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password
 eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password')
 raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password')
 daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password')
+beavis = User.create(name: 'beavis', email: 'beavis@beavis.com', password: 'password')
+
 
 UserGenre.create(user: beans, genre_id: genre1.id)
 UserGenre.create(user: eman, genre_id: genre1.id)
+UserGenre.create(user: beavis, genre_id: genre3.id)
 UserInstrument.create(user: beans, instrument_id: instr1.id)
 UserInstrument.create(user: eman, instrument_id: instr2.id)
+UserInstrument.create(user:beavis, instrument_id:instr2.id)
 
-friendship1 = Friendship.create(user_id: beans.id, friend_id: eman.id)
-friendship2 = Friendship.create(user_id: raoul.id, friend_id: beans.id)
-friendship3 = Friendship.create(user_id: beans.id, friend_id: daniel.id)
+request1 = FriendRequest.create(sender_id: beavis.id, recipient_id: eman.id)
+
+# friendship1 = Friendship.create(user_id: beans.id, friend_id: eman.id)
+# friendship2 = Friendship.create(user_id: raoul.id, friend_id: beans.id)
+# friendship3 = Friendship.create(user_id: beans.id, friend_id: daniel.id)
 
 
 
