@@ -8,44 +8,39 @@
 
 User.destroy_all
 
+
 genre1 = Genre.create(name: 'rock')
 genre2 = Genre.create(name: 'pop')
 genre3 = Genre.create(name: 'punk')
 genre4 = Genre.create(name: 'polka')
 
 
-instr1 = Instrument.create(name: 'guitar')
-instr2 = Instrument.create(name: 'drums')
+guitar = Instrument.create(name: 'guitar')
+drums = Instrument.create(name: 'drums')
 
 beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password')
 eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password')
 raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password')
 daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password')
-beavis = User.create(name: 'beavis', email: 'beavis@beavis.com', password: 'password')
 
 
-UserGenre.create(user: beans, genre_id: genre1.id)
-UserGenre.create(user: eman, genre_id: genre1.id)
-UserGenre.create(user: beavis, genre_id: genre3.id)
-UserInstrument.create(user: beans, instrument_id: instr1.id)
-UserInstrument.create(user: eman, instrument_id: instr2.id)
-UserInstrument.create(user:beavis, instrument_id:instr2.id)
-
-request1 = FriendRequest.create(sender_id: beavis.id, recipient_id: eman.id)
-
-# friendship1 = Friendship.create(user_id: beans.id, friend_id: eman.id)
-# friendship2 = Friendship.create(user_id: raoul.id, friend_id: beans.id)
-# friendship3 = Friendship.create(user_id: beans.id, friend_id: daniel.id)
+UserGenre.create(user: beans, genre: genre1)
+UserGenre.create(user: eman, genre: genre2)
+UserGenre.create(user: raoul, genre: genre3)
+UserGenre.create(user: daniel, genre: genre4)
+UserInstrument.create(user: beans, instrument: guitar)
+UserInstrument.create(user: eman, instrument: drums)
+UserInstrument.create(user: raoul, instrument: guitar)
+UserInstrument.create(user: daniel, instrument: drums)
 
 
+friendship1 = Friendship.create(user: beans, friend: eman)
+friendship2 = Friendship.create(user: raoul, friend: beans)
+friendship3 = Friendship.create(user: beans, friend: daniel)
 
-
-
-
-
-# request_1 = FriendRequest.create(sender: beans, recipient: eman)
-# request_2 = FriendRequest.create(sender: beans, recipient: raoul)
-# request_3 = FriendRequest.create(sender: beans, recipient: daniel)
+request_1 = FriendRequest.create(sender: beans, recipient: eman)
+request_2 = FriendRequest.create(sender: beans, recipient: raoul)
+request_3 = FriendRequest.create(sender: beans, recipient: daniel)
 # classy_ladykillers = Conversation.create(name: 'Classy Ladykillers')
 # UserConversation.create(user: beans, conversation: classy_ladykillers)
 # UserConversation.create(user: eman, conversation: classy_ladykillers)
