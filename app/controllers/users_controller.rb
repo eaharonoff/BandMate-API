@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     city = City.create(name: real_params['city']['name'])
     user = User.create(name: real_params['name'], city: city, email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'])
     add_instruments_and_genres(real_params, user)
-    byebug
     render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
   end
 
