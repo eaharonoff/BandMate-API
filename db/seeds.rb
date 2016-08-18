@@ -8,6 +8,7 @@
 
 User.destroy_all
 
+hey = City.create(name: 'test')
 
 genre1 = Genre.create(name: 'rock')
 genre2 = Genre.create(name: 'pop')
@@ -18,10 +19,10 @@ genre4 = Genre.create(name: 'polka')
 guitar = Instrument.create(name: 'guitar')
 drums = Instrument.create(name: 'drums')
 
-beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password')
-eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password')
-raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password')
-daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password')
+beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password', city: hey)
+eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password', city: hey)
+raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password', city: hey)
+daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password', city: hey)
 
 
 UserGenre.create(user: beans, genre: genre1)
