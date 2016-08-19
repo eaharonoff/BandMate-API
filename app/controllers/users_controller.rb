@@ -6,14 +6,14 @@ class UsersController < ApplicationController
   def create
     real_params = JSON.parse(params.keys[0])
     city = City.create(name: real_params['city']['name'])
-    user = User.create(name: real_params['name'], city: city, email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'])
+    user = User.create(name: real_params['name'], city: city, email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'], picture: real_params['picture']['preview'])
     add_instruments_and_genres(real_params, user)
     render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
   end
 
   def show
     user = User.find(params[:id])
-    render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
+    render json: user, include: ["city", "genres", "instruments", "soundcloud", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
   end
 
   def update
@@ -25,6 +25,9 @@ class UsersController < ApplicationController
     UserInstrument.where('user_id = ?', user.id).destroy_all
     add_instruments_and_genres(real_params, user)
     render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+  end
+
+  def upload_picture
   end
 
 
@@ -57,7 +60,6 @@ class UsersController < ApplicationController
     instruments = real_params["instruments"]
     instruments.split.each {|instrument| UserInstrument.create(user: user, instrument: Instrument.find_by(name: instrument))}
     genres.split.each {|genre| UserGenre.create(user: user, genre: Genre.find_by(name: genre))}
-
   end
 
   def filter
@@ -65,12 +67,15 @@ class UsersController < ApplicationController
     genre_array = real_params["genres"].split.flatten
     instrument_array = real_params["instruments"].split.flatten
     filtered_users = lee_filter_users(genre_array, instrument_array).reject {|user| user.id === real_params['userId']}
-    render json: filtered_users, include: ['name', 'age', 'instruments', 'genres', 'city', 'city.name']
+    render json: filtered_users, include: ['name', 'age', 'instruments', 'genres', 'city']
   end
 
-
   def lee_filter_users(genre_array, instrument_array)
-    User.all.sort_by {|user| (user.genres & genre_array).length/(genre_array.length + 1) + (user.instruments & instrument_array).length/(instrument_array.length + 1)}.reverse
+    User.all.sort_by {|user| user_index(genre_array, instrument_array, user)}.reverse
+  end
+
+  def user_index(genre_array, instrument_array, user)
+    (user.genres.to_a.map {|genre| genre.name} & genre_array).length/(genre_array.length + 1).to_f + (user.instruments.to_a.map {|instrument| instrument.name} & instrument_array).length/(instrument_array.length + 1).to_f
   end
 
   def raoul_filter_users(genre_array, instrument_array)

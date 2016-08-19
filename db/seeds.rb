@@ -19,10 +19,10 @@ genre4 = Genre.create(name: 'polka')
 guitar = Instrument.create(name: 'guitar')
 drums = Instrument.create(name: 'drums')
 
-beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password', city: hey)
-eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password', city: hey)
-raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password', city: hey)
-daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password', city: hey)
+beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password', city: hey, picture: 'http://cp91279.biography.com/BIO_Bio-Shorts_0_Miles-Davis_150550_SF_HD_768x432-16x9.jpg')
+eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password', city: hey, picture: 'https://lh5.googleusercontent.com/-rotwX2rMVUM/AAAAAAAAAAI/AAAAAAABb28/WRGFcZkDV6Q/s0-c-k-no-ns/photo.jpg')
+raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password', city: hey, picture: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Official_Portrait_of_President_Reagan_1981.jpg')
+daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password', city: hey, picture: 'http://cdn.thedailybeast.com/content/dailybeast/articles/2014/09/14/what-if-jazz-giant-john-coltrane-had-lived/jcr:content/image.crop.800.500.jpg/47023364.cached.jpg')
 
 
 UserGenre.create(user: beans, genre: genre1)
