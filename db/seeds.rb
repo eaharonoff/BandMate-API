@@ -37,16 +37,12 @@ UserInstrument.create(user: daniel, instrument: drums)
 
 
 friendship1 = Friendship.create(user: beans, friend: daniel)
-school_work = Conversation.create(subject: 'school', user1:daniel, user2: beans)
+school_work = Conversation.create(user1:daniel, user2: beans)
 Message.create(conversation: school_work, sender: daniel, body: 'yo')
 Message.create(conversation: school_work, sender: beans, body: 'hola')
-# request_1 = FriendRequest.create(sender: beans, recipient: eman)
-# request_2 = FriendRequest.create(sender: beans, recipient: raoul)
-# request_3 = FriendRequest.create(sender: beans, recipient: daniel)
-# classy_ladykillers = Conversation.create(subject: 'bubble tea', user1: beans, user2: eman)
 
-# hey_girl = Conversation.create(subject: 'chicks', user1: beans, user2: jane )
-# yo = Conversation.create(subject: 'lee is lame', user1: daniel, user2: eman )
+friendship2 = Friendship.create(user: eman, friend: beans)
+
 
 
 

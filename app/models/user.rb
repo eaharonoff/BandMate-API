@@ -22,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def all_conversations
-    Conversation.where('conversations.user1_id = ?', 1).or(Conversation.where('conversations.user2_id = ?', 1))
+    Conversation.where('conversations.user1_id = ?', self.id).or(Conversation.where('conversations.user2_id = ?', self.id))
   end
 
   def accept_request(from_user_id)

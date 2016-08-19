@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20160815174703) do
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.string   "subject"
     t.integer  "user1_id"
     t.integer  "user2_id"
     t.datetime "created_at", null: false
