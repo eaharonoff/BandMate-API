@@ -22,4 +22,5 @@ Rails.application.routes.draw do
         post '/user', to: 'users#update'
         post '/users/filter', to: 'users#filter'
         post '/friend_requests/delete', to: 'friend_requests#delete'
+    
       end
