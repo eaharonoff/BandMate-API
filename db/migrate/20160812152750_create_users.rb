@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :age
       t.string :bio
       t.string :soundcloud
+      t.string :picture
 
       t.timestamps
     end

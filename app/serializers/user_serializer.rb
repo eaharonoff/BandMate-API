@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :age, :bio, :soundcloud
+  attributes :id, :name, :email, :age, :bio, :soundcloud, :picture
   belongs_to :city
   has_many :instruments
   has_many :genres

@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20160817161645) do
     t.string   "age"
     t.string   "bio"
     t.string   "soundcloud"
+    t.string   "picture"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
