@@ -31,15 +31,15 @@ ActiveRecord::Schema.define(version: 20160815174703) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
-    t.integer  "lat"
-    t.integer  "lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "user1_id"
+    t.string   "user1_name"
     t.integer  "user2_id"
+    t.string   "user2_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -108,11 +108,12 @@ ActiveRecord::Schema.define(version: 20160815174703) do
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.integer  "zip"
+    t.integer  "city_id"
     t.string   "name"
     t.string   "age"
     t.string   "bio"
-    t.string   "soundcloud_url"
+    t.string   "soundcloud"
+    t.string   "picture"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

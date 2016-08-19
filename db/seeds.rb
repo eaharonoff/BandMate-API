@@ -8,6 +8,7 @@
 
 User.destroy_all
 
+hey = City.create(name: 'test')
 
 genre1 = Genre.create(name: 'rock')
 genre2 = Genre.create(name: 'pop')
@@ -18,12 +19,11 @@ genre4 = Genre.create(name: 'polka')
 guitar = Instrument.create(name: 'guitar')
 drums = Instrument.create(name: 'drums')
 
-beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password')
-eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password')
-raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password')
-daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password')
-jane = User.create(name: 'jane', email: 'jane@jane.com', password: 'password')
-joe = User.create(name: 'joe', email: 'joe@joe.com', password: 'password')
+beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password', city: hey, picture: 'http://cp91279.biography.com/BIO_Bio-Shorts_0_Miles-Davis_150550_SF_HD_768x432-16x9.jpg')
+eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password', city: hey, picture: 'https://lh5.googleusercontent.com/-rotwX2rMVUM/AAAAAAAAAAI/AAAAAAABb28/WRGFcZkDV6Q/s0-c-k-no-ns/photo.jpg')
+raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password', city: hey, picture: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Official_Portrait_of_President_Reagan_1981.jpg')
+daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password', city: hey, picture: 'http://cdn.thedailybeast.com/content/dailybeast/articles/2014/09/14/what-if-jazz-giant-john-coltrane-had-lived/jcr:content/image.crop.800.500.jpg/47023364.cached.jpg')
+
 
 
 UserGenre.create(user: beans, genre: genre1)
@@ -37,7 +37,7 @@ UserInstrument.create(user: daniel, instrument: drums)
 
 
 friendship1 = Friendship.create(user: beans, friend: daniel)
-school_work = Conversation.create(user1:daniel, user2: beans)
+school_work = Conversation.create(user1:daniel, user2: beans, user1_name: daniel.name, user2_name: beans.name)
 Message.create(conversation: school_work, sender: daniel, body: 'yo')
 Message.create(conversation: school_work, sender: beans, body: 'hola')
 
