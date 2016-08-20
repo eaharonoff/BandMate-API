@@ -8,7 +8,7 @@
 
 User.destroy_all
 
-hey = City.create(name: 'test')
+hey = City.create(name: 'NYC')
 
 genre1 = Genre.create(name: 'rock')
 genre2 = Genre.create(name: 'pop')
@@ -37,10 +37,6 @@ UserInstrument.create(user: daniel, instrument: drums)
 
 
 friendship1 = Friendship.create(user: beans, friend: daniel)
-school_work = Conversation.create(user1:daniel, user2: beans, user1_name: daniel.name, user2_name: beans.name)
-Message.create(conversation: school_work, sender: daniel, body: 'yo')
-Message.create(conversation: school_work, sender: beans, body: 'hola')
-
 friendship2 = Friendship.create(user: eman, friend: beans)
 
 
