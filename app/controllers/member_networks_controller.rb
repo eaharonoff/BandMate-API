@@ -1,2 +1,0 @@
-class MemberNetworksController < ApplicationController
-end
