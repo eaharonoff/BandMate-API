@@ -28,7 +28,6 @@ class UsersController < ApplicationController
       render json: message
     else
       user = User.find(real_params['id'])
-      byebug
       city = City.create(name: real_params['city']['name'])
       user.update(name: real_params['name'], city: city, age: real_params['age'], bio: real_params['bio'])
       UserGenre.where('user_id = ?', user.id).destroy_all
