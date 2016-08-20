@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       render json: message
     else
       city = City.create(name: real_params['city']['name'])
-      user = User.create(name: real_params['name'], city: city, email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'], picture: real_params['picture']['preview'])
+      user = User.create(name: real_params['name'], city: city, email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'])
       add_instruments_and_genres(real_params, user)
       render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
     end
@@ -23,13 +23,19 @@ class UsersController < ApplicationController
 
   def update
     real_params = JSON.parse(params.keys[0])
-    user = User.find(real_params['id'])
-    city = City.create(name: real_params['city']['name'])
-    user.update(name: real_params['name'], city: city, age: real_params['age'], bio: real_params['bio'])
-    UserGenre.where('user_id = ?', user.id).destroy_all
-    UserInstrument.where('user_id = ?', user.id).destroy_all
-    add_instruments_and_genres(real_params, user)
-    render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+    if !validate_genres_and_instruments(real_params)
+      message = {info: 'please select at least one of each category'}
+      render json: message
+    else
+      user = User.find(real_params['id'])
+      byebug
+      city = City.create(name: real_params['city']['name'])
+      user.update(name: real_params['name'], city: city, age: real_params['age'], bio: real_params['bio'])
+      UserGenre.where('user_id = ?', user.id).destroy_all
+      UserInstrument.where('user_id = ?', user.id).destroy_all
+      add_instruments_and_genres(real_params, user)
+      render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+    end
   end
 
 
