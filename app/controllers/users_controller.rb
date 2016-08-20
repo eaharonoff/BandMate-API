@@ -5,10 +5,15 @@ class UsersController < ApplicationController
 
   def create
     real_params = JSON.parse(params.keys[0])
-    city = City.create(name: real_params['city']['name'])
-    user = User.create(name: real_params['name'], city: city, email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'], picture: real_params['picture']['preview'])
-    add_instruments_and_genres(real_params, user)
-    render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+    if !validate_genres_and_instruments(real_params)
+      message = {info: 'please select at least one of each category'}
+      render json: message
+    else
+      city = City.create(name: real_params['city']['name'])
+      user = User.create(name: real_params['name'], city: city, email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'], picture: real_params['picture']['preview'])
+      add_instruments_and_genres(real_params, user)
+      render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+    end
   end
 
   def show
@@ -27,21 +32,6 @@ class UsersController < ApplicationController
     render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
   end
 
-  def upload_picture
-  end
-
-
-
-  # def index
-  #   users = User.all
-  #   render json: users, include: ['name', 'instruments', 'genres']
-  # end
-  #
-  # # def show_conversations
-  # #   user = User.find(params[:id])
-  # #   conversations = user.conversations
-  # #   render json: conversations.includes(:users), include: ['name', 'users']
-  # # end
 
   def login
     real_params = JSON.parse(params.keys[0])
@@ -55,9 +45,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def add_instruments_and_genres(real_params, user)
+  def validate_genres_and_instruments(real_params)
     genres = real_params["genres"]
     instruments = real_params["instruments"]
+    genres.empty? || instruments.empty? ? false : [genres, instruments]
+  end
+
+  def add_instruments_and_genres(real_params, user)
+    genres = validate_genres_and_instruments(real_params)[0]
+    instruments = validate_genres_and_instruments(real_params)[1]
     instruments.split.each {|instrument| UserInstrument.create(user: user, instrument: Instrument.find_by(name: instrument))}
     genres.split.each {|genre| UserGenre.create(user: user, genre: Genre.find_by(name: genre))}
   end
