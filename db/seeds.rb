@@ -8,7 +8,7 @@
 
 User.destroy_all
 
-hey = City.create(name: 'test')
+hey = City.create(name: 'NYC')
 
 genre1 = Genre.create(name: 'rock')
 genre2 = Genre.create(name: 'pop')
@@ -25,6 +25,7 @@ raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password
 daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password', city: hey, picture: 'http://cdn.thedailybeast.com/content/dailybeast/articles/2014/09/14/what-if-jazz-giant-john-coltrane-had-lived/jcr:content/image.crop.800.500.jpg/47023364.cached.jpg')
 
 
+
 UserGenre.create(user: beans, genre: genre1)
 UserGenre.create(user: eman, genre: genre2)
 UserGenre.create(user: raoul, genre: genre3)
@@ -35,28 +36,22 @@ UserInstrument.create(user: raoul, instrument: guitar)
 UserInstrument.create(user: daniel, instrument: drums)
 
 
-friendship1 = Friendship.create(user: beans, friend: eman)
-friendship2 = Friendship.create(user: raoul, friend: beans)
-friendship3 = Friendship.create(user: beans, friend: daniel)
+friendship1 = Friendship.create(user: beans, friend: daniel)
+friendship2 = Friendship.create(user: eman, friend: beans)
 
-request_1 = FriendRequest.create(sender: beans, recipient: eman)
-request_2 = FriendRequest.create(sender: beans, recipient: raoul)
-request_3 = FriendRequest.create(sender: beans, recipient: daniel)
-classy_ladykillers = Conversation.create(name: 'Classy Ladykillers')
-school_work = Conversation.create(name: 'School Work')
 
-UserConversation.create(user: beans, conversation: school_work)
-UserConversation.create(user: raoul, conversation: school_work)
-Message.create(conversation: school_work, user: beans, body: 'yo')
-Message.create(conversation: school_work, user: raoul, body: 'hola')
 
-UserConversation.create(user: beans, conversation: classy_ladykillers)
-UserConversation.create(user: eman, conversation: classy_ladykillers)
-UserConversation.create(user: daniel, conversation: classy_ladykillers)
-Message.create(conversation: classy_ladykillers, user: beans, body: 'hi')
-Message.create(conversation: classy_ladykillers, user: eman, body: 'sup girl')
-Message.create(conversation: classy_ladykillers, user: beans, body: 'how are you')
-Message.create(conversation: classy_ladykillers, user: eman, body: 'wanna date?')
+
+
+# Message.create(conversation: classy_ladykillers, sender: beans, body: 'hi')
+# Message.create(conversation: classy_ladykillers, sender: eman, body: 'sup girl')
+# Message.create(conversation: classy_ladykillers, sender: beans, body: 'how are you')
+# Message.create(conversation: classy_ladykillers, sender: eman, body: 'wanna date?')
+# Message.create(conversation: hey_girl, sender: jane, body: 'hey boy')
+# Message.create(conversation: hey_girl, sender: beans, body: 'I am a man, hear me roar')
+# Message.create(conversation: hey_girl, sender: jane, body: 'you are weird.')
+
+
 
 
 

@@ -1,5 +1,6 @@
 class ConversationSerializer < ActiveModel::Serializer
   has_many :messages
-  has_many :users
-  attributes :id, :name
+  belongs_to :user1, class_name: 'User'
+  belongs_to :user2, class_name: 'User'
+  attributes :id, :messages
 end
