@@ -12,13 +12,13 @@ class UsersController < ApplicationController
       city = City.create(name: real_params['city']['name'])
       user = User.create(name: real_params['name'], city: city, email: real_params['email'], password: real_params['password'], soundcloud: real_params['soundcloud'])
       add_instruments_and_genres(real_params, user)
-      render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+      render json: user, include: included_attributes
     end
   end
 
   def show
     user = User.find(params[:id])
-    render json: user, include: ["city", "genres", "instruments", "soundcloud", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments"]
+    render json: user, include: included_attributes
   end
 
   def update
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
       UserGenre.where('user_id = ?', user.id).destroy_all
       UserInstrument.where('user_id = ?', user.id).destroy_all
       add_instruments_and_genres(real_params, user)
-      render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+      render json: user, include: included_attributes
     end
   end
 
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     user = User.find_by(email: real_params['email'])
     friends = user.all_friends[0..3]
     if user && user.authenticate(real_params["password"])
-      render json: user, include: ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+      render json: user, include: included_attributes
     else
       message = {info: 'Incorrect Email / Password'}
       render json: message
@@ -82,6 +82,10 @@ class UsersController < ApplicationController
   def raoul_filter_users(genre_array, instrument_array)
     filtered_by_instruments = User.all.select {|user| (user.instruments & instrument_array).length >= 1}
     filtered_by_instruments.sort_by {|user| user.genres & genre_array.length }.reverse
+  end
+
+  def included_attributes
+    ["friends.city", "inverse_friends.city", "city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
   end
 
 end
