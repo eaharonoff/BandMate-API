@@ -28,8 +28,16 @@ class UsersController < ApplicationController
       render json: message
     else
       user = User.find(real_params['id'])
+      attributes = ['name', 'age', 'bio']
+      attributes.each do |attribute|
+        if real_params[attribute]
+          user.update("#{attribute}": real_params[attribute])
+        else
+          user.update("#{attribute}": user.send(attribute))
+        end
+      end
       city = City.create(name: real_params['city']['name'])
-      user.update(name: real_params['name'], city: city, age: real_params['age'], bio: real_params['bio'])
+      user.update(city: city)
       UserGenre.where('user_id = ?', user.id).destroy_all
       UserInstrument.where('user_id = ?', user.id).destroy_all
       add_instruments_and_genres(real_params, user)
@@ -69,7 +77,7 @@ class UsersController < ApplicationController
     genre_array = real_params["genres"].split.flatten
     instrument_array = real_params["instruments"].split.flatten
     filtered_users = lee_filter_users(genre_array, instrument_array).reject {|user| user.id === real_params['userId']}
-    render json: filtered_users, include: ['name', 'age', 'instruments', 'genres', 'city']
+    render json: filtered_users, include: ['name', 'age', 'city']
   end
 
   def lee_filter_users(genre_array, instrument_array)
@@ -86,7 +94,7 @@ class UsersController < ApplicationController
   end
 
   def included_attributes
-    ["friends.city", "inverse_friends.city", "city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+    ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "inverse_friends", "conversations"]
   end
 
 end
