@@ -28,8 +28,16 @@ class UsersController < ApplicationController
       render json: message
     else
       user = User.find(real_params['id'])
+      attributes = ['name', 'age', 'bio']
+      attributes.each do |attribute|
+        if real_params[attribute]
+          user.update("#{attribute}": real_params[attribute])
+        else
+          user.update("#{attribute}": user.send(attribute))
+        end
+      end
       city = City.create(name: real_params['city']['name'])
-      user.update(name: real_params['name'], city: city, age: real_params['age'], bio: real_params['bio'])
+      user.update(city: city)
       UserGenre.where('user_id = ?', user.id).destroy_all
       UserInstrument.where('user_id = ?', user.id).destroy_all
       add_instruments_and_genres(real_params, user)
