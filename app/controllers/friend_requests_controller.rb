@@ -4,8 +4,13 @@ class FriendRequestsController < ApplicationController
     real_params = JSON.parse(params.keys[0])
     sender = User.find(real_params['myId'])
     recipient = User.find(real_params['userId'])
-    friend_request = FriendRequest.create(sender: sender, recipient: recipient)
-    render json: friend_request, include: ['recipient.id']
+    if !FriendRequest.find_by(sender: sender, recipient: recipient) && !FriendRequest.find_by(sender: recipient, recipient: sender)
+      friend_request = FriendRequest.create(sender: sender, recipient: recipient)
+      render json: friend_request, include: ['recipient.id']
+    else
+      message = {info: "There is already a friend request with you and #{recipient.name}."}
+      render json: message
+    end
   end
 
   def delete

@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
-  
-  def create 
+
+  def create
     real_params = JSON.parse(params.keys[0])
     user1 = User.find(real_params['currentUser'])
     user2 = User.find(real_params['userClicked'])
@@ -12,5 +12,4 @@ class ConversationsController < ApplicationController
     conversation = Conversation.find(params[:id])
     render json: conversation, include: ['messages']
   end
-
 end
