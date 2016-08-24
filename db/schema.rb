@@ -78,12 +78,6 @@ ActiveRecord::Schema.define(version: 20160815174703) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "networks", force: :cascade do |t|
-    t.integer  "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_bands", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "band_id"

@@ -1,28 +1,73 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
 
 User.destroy_all
 
-hey = City.create(name: 'NYC')
 
 genre1 = Genre.create(name: 'rock')
 genre2 = Genre.create(name: 'pop')
-genre3 = Genre.create(name: 'punk')
-genre4 = Genre.create(name: 'polka')
+genre3 = Genre.create(name: 'jazz')
+genre4 = Genre.create(name: 'indie')
+genre5 = Genre.create(name: 'jingle')
+genre6 = Genre.create(name: 'blues')
+genre7 = Genre.create(name: 'folk')
+genre8 = Genre.create(name: 'funk')
+genre9 = Genre.create(name: 'gospel')
+genre10 = Genre.create(name: 'techno')
+genre11 = Genre.create(name: 'metal')
+genre12 = Genre.create(name: 'pop')
+genre13 = Genre.create(name: 'k-pop')
+genre14 = Genre.create(name: 'j-pop')
+genre15 = Genre.create(name: 'classical')
+
 
 
 guitar = Instrument.create(name: 'guitar')
 drums = Instrument.create(name: 'drums')
+bass_guitar = Instrument.create(name: 'bass_guitar')
+mandolin = Instrument.create(name: 'mandolin')
+accordion = Instrument.create(name: 'accordion')
+bagpipes = Instrument.create(name: 'bagpipes')
+banjo = Instrument.create(name: 'banjo')
+clarinet = Instrument.create(name: 'clarinet')
+fiddle = Instrument.create(name: 'fiddle')
+flute = Instrument.create(name: 'flute')
+harmonica = Instrument.create(name: 'harmonica')
+piano = Instrument.create(name: 'piano')
+ukulele = Instrument.create(name: 'ukulele')
+alto_saxophone = Instrument.create(name: 'alto_saxophone')
+tenor_saxophone = Instrument.create(name: 'tenor_saxophone')
+trumpet = Instrument.create(name: 'trumpet')
 
-beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password', city: hey, picture: 'http://cp91279.biography.com/BIO_Bio-Shorts_0_Miles-Davis_150550_SF_HD_768x432-16x9.jpg')
-eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password', city: hey, picture: 'https://lh5.googleusercontent.com/-rotwX2rMVUM/AAAAAAAAAAI/AAAAAAABb28/WRGFcZkDV6Q/s0-c-k-no-ns/photo.jpg')
-raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password', city: hey, picture: 'https://upload.wikimedia.org/wikipedia/commons/1/16/Official_Portrait_of_President_Reagan_1981.jpg')
-daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password', city: hey, picture: 'http://cdn.thedailybeast.com/content/dailybeast/articles/2014/09/14/what-if-jazz-giant-john-coltrane-had-lived/jcr:content/image.crop.800.500.jpg/47023364.cached.jpg')
+new_york = City.create(name: 'New York')
+los_angeles = City.create(name: "Los Angeles")
+nashville = City.create(name: "Nashville")
+
+
+beans = User.create(name: 'beans', email: 'beans@beans.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/255784156&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+eman = User.create(name: 'eman', email: 'eman@eman.com', password: 'password', city: los_angeles, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/255063438&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+raoul = User.create(name: 'raoul', email: 'raoul@raoul.com', password: 'password', city: nashville, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249568263&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+daniel = User.create(name: 'daniel', email: 'daniel@daniel.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/279582139&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+sylvester = User.create(name: 'sylvester', email: 'sylvester@sylvester.com', password: 'password', city: los_angeles, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/265148710&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+licorice = User.create(name: 'licorice', email: 'licorice@licorice.com', password: 'password', city: nashville, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252456641&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+charlie = User.create(name: 'charlie', email: 'charlie@charlie.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252456641&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+tigernan = User.create(name: 'tigernan', email: 'tigernan@tigernan.com', password: 'password', city: los_angeles, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/255784156&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+raja = User.create(name: 'raja', email: 'raja@raja.com', password: 'password', city: nashville, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/255063438&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+miles = User.create(name: 'miles', email: 'miles@miles.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249568263&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+willy = User.create(name: 'willy', email: 'willy@willy.com', password: 'password', city: los_angeles, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/279582139&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+pat = User.create(name: 'pat', email: 'pat@pat.com', password: 'password', city: los_angeles, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/265148710&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+natsu = User.create(name: 'natsu', email: 'natsu@natsu.com', password: 'password', city: nashville, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252456641&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+alex = User.create(name: 'alex', email: 'alex@alex.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252456641&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+roy = User.create(name: 'roy', email: 'roy@roy.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252456641&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+rollie = User.create(name: 'rollie', email: 'rollie@rollie.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252456641&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+ido = User.create(name: 'ido', email: 'ido@ido.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252456641&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+maxim = User.create(name: 'maxim', email: 'maxim@maxim.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/252456641&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+quin = User.create(name: 'quin', email: 'quin@quin.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249568263&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+liko = User.create(name: 'liko', email: 'liko@liko.com', password: 'password', city: los_angeles, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249568263&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+bugra = User.create(name: 'bugra', email: 'bugra@bugra.com', password: 'password', city: los_angeles, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249568263&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+jeff = User.create(name: 'jeff', email: 'jeff@jeff.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249568263&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+leigh = User.create(name: 'leigh', email: 'leigh@leigh.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249568263&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+sam = User.create(name: 'sam', email: 'sam@sam.com', password: 'password', city: new_york, soundcloud: '<iframe width="100%" height="80" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/249568263&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>')
+
 
 
 
@@ -30,35 +75,66 @@ UserGenre.create(user: beans, genre: genre1)
 UserGenre.create(user: eman, genre: genre2)
 UserGenre.create(user: raoul, genre: genre3)
 UserGenre.create(user: daniel, genre: genre4)
+UserGenre.create(user: sylvester, genre: genre5)
+UserGenre.create(user: licorice, genre: genre6)
+UserGenre.create(user: charlie, genre: genre7)
+UserGenre.create(user: tigernan, genre: genre8)
+UserGenre.create(user: raja, genre: genre9)
+UserGenre.create(user: miles, genre: genre10)
+UserGenre.create(user: willy, genre: genre11)
+UserGenre.create(user: pat, genre: genre12)
+UserGenre.create(user: natsu, genre: genre13)
+UserGenre.create(user: alex, genre: genre14)
+UserGenre.create(user: roy, genre: genre15)
+UserGenre.create(user: rollie, genre: genre1)
+UserGenre.create(user: ido, genre: genre2)
+UserGenre.create(user: maxim, genre: genre3)
+UserGenre.create(user: quin, genre: genre4)
+UserGenre.create(user: liko, genre: genre5)
+UserGenre.create(user: bugra, genre: genre6)
+UserGenre.create(user: jeff, genre: genre7)
+UserGenre.create(user: leigh, genre: genre8)
+UserGenre.create(user: sam, genre: genre9)
+
+
 UserInstrument.create(user: beans, instrument: guitar)
 UserInstrument.create(user: eman, instrument: drums)
-UserInstrument.create(user: raoul, instrument: guitar)
+UserInstrument.create(user: raoul, instrument: ukulele)
 UserInstrument.create(user: daniel, instrument: drums)
+UserInstrument.create(user: sylvester, instrument: bass_guitar)
+UserInstrument.create(user: licorice, instrument: mandolin)
+UserInstrument.create(user: charlie, instrument: accordion)
+UserInstrument.create(user: tigernan, instrument: bagpipes)
+UserInstrument.create(user: raja, instrument: banjo)
+UserInstrument.create(user: willy, instrument: clarinet)
+UserInstrument.create(user: pat, instrument: fiddle)
+UserInstrument.create(user: natsu, instrument: flute)
+UserInstrument.create(user: alex, instrument: harmonica)
+UserInstrument.create(user: roy, instrument: piano)
+UserInstrument.create(user: rollie, instrument: alto_saxophone)
+UserInstrument.create(user: ido, instrument: tenor_saxophone)
+UserInstrument.create(user: maxim, instrument: trumpet)
+UserInstrument.create(user: quin, instrument: guitar)
+UserInstrument.create(user: liko, instrument: drums)
+UserInstrument.create(user: bugra, instrument: bass_guitar)
+UserInstrument.create(user: jeff, instrument: mandolin)
+UserInstrument.create(user: leigh, instrument: drums)
+UserInstrument.create(user: sam, instrument: bagpipes)
 
 
-friendship1 = Friendship.create(user: beans, friend: daniel)
-friendship2 = Friendship.create(user: eman, friend: beans)
+
+friendship1 = Friendship.create(user: beans, friend: eman)
+friendship2 = Friendship.create(user: raoul, friend: beans)
+friendship3 = Friendship.create(user: beans, friend: daniel)
+friendship4 = Friendship.create(user: beans, friend: raja)
+friendship5 = Friendship.create(user: beans, friend: eman)
+friendship6 = Friendship.create(user: beans, friend: willy)
+friendship7 = Friendship.create(user: beans, friend: sylvester)
+friendship8 = Friendship.create(user: beans, friend: jeff)
+friendship9 = Friendship.create(user: beans, friend: licorice)
+friendship10 = Friendship.create(user: beans, friend: charlie)
 
 
-
-
-
-# Message.create(conversation: classy_ladykillers, sender: beans, body: 'hi')
-# Message.create(conversation: classy_ladykillers, sender: eman, body: 'sup girl')
-# Message.create(conversation: classy_ladykillers, sender: beans, body: 'how are you')
-# Message.create(conversation: classy_ladykillers, sender: eman, body: 'wanna date?')
-# Message.create(conversation: hey_girl, sender: jane, body: 'hey boy')
-# Message.create(conversation: hey_girl, sender: beans, body: 'I am a man, hear me roar')
-# Message.create(conversation: hey_girl, sender: jane, body: 'you are weird.')
-
-
-
-
-
-
-
-# request_1 = FriendRequest.create(sender: beans, recipient: eman)
-# request_2 = FriendRequest.create(sender: beans, recipient: raoul)
-# request_3 = FriendRequest.create(sender: beans, recipient: daniel)
-
-# User.joins("INNER JOIN friendships ON user_1_id = 1").where.not(id: 1).distinct
+request_1 = FriendRequest.create(sender: beans, recipient: eman)
+request_2 = FriendRequest.create(sender: beans, recipient: raoul)
+request_3 = FriendRequest.create(sender: beans, recipient: daniel)
