@@ -76,7 +76,7 @@ class UsersController < ApplicationController
     genre_array = real_params["genres"].split.flatten
     instrument_array = real_params["instruments"].split.flatten
     filtered_users = lee_filter_users(genre_array, instrument_array).reject {|user| user.id === real_params['userId']}
-    render json: filtered_users, include: ['name', 'age', 'instruments', 'genres', 'city']
+    render json: filtered_users, include: ['instruments', 'genres']
   end
 
   def lee_filter_users(genre_array, instrument_array)
@@ -93,7 +93,7 @@ class UsersController < ApplicationController
   end
 
   def included_attributes
-    ["friends.city", "inverse_friends.city", "city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "friends.genres", "friends.instruments", "inverse_friends", "inverse_friends.genres", "inverse_friends.instruments", "conversations"]
+    ["city", "genres", "instruments", "soundcloud", "sent_requests", "sent_requests.recipient", "received_requests", "received_requests.sender", "friends", "inverse_friends", "conversations"]
   end
 
 end
