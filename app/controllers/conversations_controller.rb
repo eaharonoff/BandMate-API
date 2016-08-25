@@ -12,4 +12,10 @@ class ConversationsController < ApplicationController
     conversation = Conversation.find(params[:id])
     render json: conversation, include: ['messages']
   end
+
+  def delete
+    real_params = JSON.parse(params.keys[0])
+    conversation = Conversation.find(real_params['convoId'])
+    conversation.destroy
+  end
 end
