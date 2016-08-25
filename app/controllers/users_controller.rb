@@ -76,6 +76,18 @@ class UsersController < ApplicationController
     genre_array = real_params["genres"].split.flatten
     instrument_array = real_params["instruments"].split.flatten
     filtered_users = lee_filter_users(genre_array, instrument_array).reject {|user| user.id === real_params['userId']}
+    matrix = GoogleDistanceMatrix::Matrix.new
+    cities = filtered_users.map {|user| user.city.name }
+    origins = cities.map {|city| GoogleDistanceMatrix::Place.new address: city}
+    origins.each {|origin| matrix.origins << origin}
+    user_city = real_params["userCity"]
+    destination = GoogleDistanceMatrix::Place.new address: user_city
+    matrix.destinations << destination
+    distances = matrix.data.flatten.map {|datum| datum.distance_in_meters}
+    miles = real_params["miles"]
+    byebug
+    indexes = distances.each_with_index.map { |distance, idx| distance > miles.to_f*1600 ? idx : nil }.compact
+    indexes.each {|index| filtered_users.delete_at(index)}
     render json: filtered_users, include: ['name', 'age', 'city']
   end
 
