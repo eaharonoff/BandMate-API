@@ -32,8 +32,6 @@ class UsersController < ApplicationController
       attributes.each do |attribute|
         if real_params[attribute]
           user.update("#{attribute}": real_params[attribute])
-        else
-          user.update("#{attribute}": user.send(attribute))
         end
       end
       city = City.create(name: real_params['city']['name'])
@@ -77,8 +75,24 @@ class UsersController < ApplicationController
     genre_array = real_params["genres"].split.flatten
     instrument_array = real_params["instruments"].split.flatten
     filtered_users = lee_filter_users(genre_array, instrument_array).reject {|user| user.id === real_params['userId']}
-    render json: filtered_users, include: ['name', 'age', 'city']
+    miles = real_params["miles"]
+    user_city = real_params["userCity"]
+    filter_by_distance(filtered_users, miles, user_city)
+    render json: filtered_users.compact, include: ['name', 'age', 'city']
   end
+
+  def filter_by_distance(filtered_users, miles, user_city)
+    matrix = GoogleDistanceMatrix::Matrix.new
+    cities = filtered_users.map {|user| user.city.name }
+    origins = cities.map {|city| GoogleDistanceMatrix::Place.new address: city}
+    origins.each {|origin| matrix.origins << origin}
+    destination = GoogleDistanceMatrix::Place.new address: user_city
+    matrix.destinations << destination
+    distances = matrix.data.flatten.map {|datum| datum.distance_in_meters}
+    indexes = distances.each_with_index.map { |distance, idx| distance > miles.to_f*1600 ? idx : nil }.compact
+    indexes.each {|index| filtered_users[index] = nil }
+  end
+
 
   def lee_filter_users(genre_array, instrument_array)
     User.all.sort_by {|user| user_index(genre_array, instrument_array, user)}.reverse
