@@ -40,6 +40,7 @@ class UsersController < ApplicationController
       UserInstrument.where('user_id = ?', user.id).destroy_all
       add_instruments_and_genres(real_params, user)
       render json: user, include: included_attributes
+
     end
   end
 
