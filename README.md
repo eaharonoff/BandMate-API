@@ -1,26 +1,24 @@
+## Synopsis
 
-# README
+BandMate is a social networking concept designed to bring artists together. Find and connect with musicians based on genres, instruments and location of your choosing. BandMate's API is built using Ruby and Rails. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+Run 'bundle install' and 'rails s' to run on http://localhost:3000/. In order to run in sync with BandMate(https://github.com/eaharonoff/BandMate), BandMate API needs to run prior to running BandMate. 
 
-* Ruby version
+## More Info
 
-* System dependencies
+Run 'rake routes' to see familiarize with the routing instructions. We will refactor routes to be more RESTful. 
 
-* Configuration
+## Contributors
 
-* Database creation
+Lee Araneta - https://github.com/leearaneta
 
-* Database initialization
+Daniel Berry - https://github.com/berrydanielt
 
-* How to run the test suite
+Raoul Koopman - https://github.com/RKoopman
 
-* Services (job queues, cache servers, search engines, etc.)
+Emanuel Aharonoff - https://github.com/eaharonoff
 
-* Deployment instructions
 
-* ...
 
